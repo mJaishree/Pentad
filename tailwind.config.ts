@@ -12,6 +12,10 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      screens: {
+        "3xl": "1920px", // This is still much smaller than 6048px
+        ultra: "6048px", // This matches your specified width
+      },
     },
   },
   plugins: [],

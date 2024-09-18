@@ -36,6 +36,7 @@ interface ApiQuestion {
     };
   };
 }
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function Questions() {
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -61,9 +62,7 @@ export default function Questions() {
       const response = await axios.get<{
         status: boolean;
         questions: ApiQuestion[];
-      }>(
-        "https://det3xiufni.execute-api.ap-southeast-2.amazonaws.com/dev/api/v1/getQuestions"
-      );
+      }>(`${BASE_URL}/api/v1/getQuestions`);
       if (response.data.status && response.data.questions) {
         const formattedQuestions: Question[] = response.data.questions.map(
           (q) => ({
@@ -92,7 +91,7 @@ export default function Questions() {
     setIsLoading(true);
     try {
       const response = await axios.post<{ data: string }>(
-        `https://det3xiufni.execute-api.ap-southeast-2.amazonaws.com/dev/api/v1/storeAnswer/${userId}`,
+        `${BASE_URL}/api/v1/storeAnswer/${userId}`,
         { intelligenceName },
         {
           headers: {
@@ -151,8 +150,9 @@ export default function Questions() {
           width={1200}
           height={300}
           alt="ribbon"
+          className="ultra:w-[3200px]"
         />
-        <div className="absolute top-1/2 transform -translate-y-1/2 text-center md:text-4xl xl:text-4xl lg:text-4xl font-bold text-white text-md">
+        <div className="absolute top-1/2 transform -translate-y-1/2 text-center md:text-4xl xl:text-4xl lg:text-4xl font-bold text-white text-md ultra:text-8xl">
           {questions[currentQuestion].intelligence.questionText}
         </div>
       </div>
@@ -172,8 +172,9 @@ export default function Questions() {
                 width={500}
                 height={300}
                 alt="note"
+                className="ultra:w-[1500px]"
               />
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center md:text-3xl xl:text-3xl lg:text-3xl font-semibold text-black text-xs">
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center md:text-3xl xl:text-3xl lg:text-3xl font-semibold text-black text-xs ultra:text-6xl">
                 {option.text}
               </div>
             </div>
@@ -185,7 +186,7 @@ export default function Questions() {
         <button
           onClick={handleNext}
           disabled={isLoading}
-          className={`bg-[#002242] text-white px-6 py-3 rounded hover:bg-[#002242]/80 ${
+          className={`bg-[#002242] text-white px-6 py-3 rounded hover:bg-[#002242]/80 ultra:text-5xl ultra:px-16 ultra:py-10 ultra:mt-6 ${
             isLoading ? "opacity-50 cursor-not-allowed" : ""
           }`}
         >

@@ -40,7 +40,7 @@ export default function Home() {
             width={300}
             height={300}
             alt="logo"
-            className="w-48 md:w-72"
+            className="w-48 md:w-72 ultra:w-[800px]"
           />
         </div>
         <div className="hidden md:block">
@@ -49,7 +49,7 @@ export default function Home() {
             width={200}
             height={200}
             alt="pin"
-            className="w-36 md:w-52"
+            className="w-36 md:w-52 ultra:w-[800px]"
           />
         </div>
       </div>
@@ -64,7 +64,7 @@ export default function Home() {
               width={900}
               height={500}
               alt="Event"
-              className="w-full lg:w-[700px] xl:w-[900px] h-auto"
+              className="w-full lg:w-[700px] xl:w-[900px] h-auto ultra:w-[3000px]"
             />
           </div>
         </div>
@@ -88,7 +88,7 @@ export default function Home() {
           width={400}
           height={100}
           alt="pencil"
-          className="w-32 md:w-48 lg:w-64"
+          className="w-32 md:w-48 lg:w-64 ultra:w-[1000px]"
         />
       </div>
 
@@ -96,7 +96,7 @@ export default function Home() {
       <div className="flex justify-end p-4 md:p-10">
         <button
           onClick={handleMitest}
-          className="bg-[#002242] text-white px-6 py-3 rounded hover:bg-[#002242]/80 text-sm md:text-base"
+          className="bg-[#002242] text-white px-6 py-3 rounded hover:bg-[#002242]/80 text-sm md:text-base ultra:text-5xl ultra:px-16 ultra:py-10 ultra:mt-6"
         >
           Take MI Test
         </button>

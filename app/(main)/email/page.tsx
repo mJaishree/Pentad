@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import axios, { AxiosError } from "axios";
 import Loading from "../../loading";
 
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
 export default function Email() {
   const router = useRouter();
   const [name, setName] = useState("");
@@ -19,7 +21,7 @@ export default function Email() {
 
     try {
       const response = await axios.post(
-        "https://det3xiufni.execute-api.ap-southeast-2.amazonaws.com/dev/api/v1/onBoard",
+        `${BASE_URL}/api/v1/onBoard`,
         { name, email },
         {
           headers: {
@@ -80,13 +82,14 @@ export default function Email() {
         </div>
       )}
       {/* Logo and pin */}
-      <div className="flex justify-between items-center">
-        <div className="flex-1 flex justify-center mb-20">
+      <div className="flex flex-col md:flex-row justify-between items-center p-4 md:p-10">
+        <div className="flex-1 flex justify-center md:justify-start mb-10 md:mb-0">
           <Image
             src="/assets/Home/logo.png"
             width={300}
             height={300}
             alt="logo"
+            className="w-48 md:w-72 ultra:w-[800px]"
           />
         </div>
         <div>
@@ -95,12 +98,13 @@ export default function Email() {
             width={200}
             height={200}
             alt="pin"
+            className="w-36 md:w-52 ultra:w-[800px]"
           />
         </div>
       </div>
 
       {/* Boxes with input form */}
-      <div className="flex justify-center items-start space-x-20">
+      <div className="flex justify-center items-center space-x-20">
         <div className="flex-col">
           <div className="relative">
             {/* Main image */}
@@ -109,6 +113,7 @@ export default function Email() {
               width={900}
               height={500}
               alt="Whitebox"
+              className="w-full lg:w-[700px] xl:w-[900px] h-auto ultra:w-[3000px]"
             />
             {/* Form inside the image */}
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-10">
@@ -121,7 +126,7 @@ export default function Email() {
                   placeholder="Enter your Name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full max-w-lg p-4 text-lg rounded-md border-2 border-gray-300 focus:outline-none focus:border-[#002242] shadow-sm"
+                  className="w-full  p-4 text-lg rounded-md border-2 border-gray-300 focus:outline-none focus:border-[#002242] shadow-sm ultra:w-[2000px] ultra:text-5xl ultra:mb-12 ultra:border-6"
                   required
                 />
                 <input
@@ -129,14 +134,14 @@ export default function Email() {
                   placeholder="Enter your Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full max-w-lg p-4 text-lg rounded-md border-2 border-gray-300 focus:outline-none focus:border-[#002242] shadow-sm"
+                  className="w-full  p-4 text-lg rounded-md border-2 border-gray-300 focus:outline-none focus:border-[#002242] shadow-sm ultra:w-[2000px] ultra:text-5xl ultra:mb-12 ultra:border-6"
                   required
                 />
                 {error && <p className="text-red-500 text-sm">{error}</p>}
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className={`bg-[#002242] text-white font-semibold text-lg py-3 px-10 rounded-md hover:bg-[#002242]/80 shadow-lg transition-all ${
+                  className={`bg-[#002242] text-white font-semibold text-lg py-3 px-10 rounded-md hover:bg-[#002242]/80 shadow-lg transition-all ultra:text-5xl ultra:px-16 ultra:py-10 ultra:mt-6 ${
                     isLoading ? "opacity-50 cursor-not-allowed" : ""
                   }`}
                 >
@@ -155,6 +160,7 @@ export default function Email() {
           width={400}
           height={100}
           alt="pencil"
+          className="w-32 md:w-48 lg:w-64 ultra:w-[1000px]"
         />
       </div>
     </div>
