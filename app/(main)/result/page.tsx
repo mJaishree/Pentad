@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import Loading from "../../loading";
 
 interface IntelligenceCount {
   [key: string]: number;
@@ -34,6 +33,7 @@ export default function Result() {
         );
         if (response.data.status && response.data.intelligenceNames) {
           setIntelligenceNames(response.data.intelligenceNames);
+          router.push("/");
         } else {
           setError("Failed to fetch results. Please try again.");
         }

@@ -4,16 +4,36 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import Loading from "../../loading";
+
 interface Option {
   text: string;
   intelligenceName: string;
 }
 
+interface Intelligence {
+  questionText: string;
+  options: Option[];
+}
+
 interface Question {
   questionId: string;
+  intelligence: Intelligence;
+}
+
+interface ApiQuestion {
+  questionId: { S: string };
   intelligence: {
-    questionText: string;
-    options: Option[];
+    M: {
+      questionText: { S: string };
+      options: {
+        L: Array<{
+          M: {
+            text: { S: string };
+            intelligenceName: { S: string };
+          };
+        }>;
+      };
+    };
   };
 }
 
@@ -27,13 +47,10 @@ export default function Questions() {
 
   useEffect(() => {
     fetchQuestions();
-    // Get userId from localStorage or URL parameter
     const storedUserId = localStorage.getItem("userId");
     if (storedUserId) {
       setUserId(storedUserId);
     } else {
-      // If not in localStorage, you might want to redirect back to the email page
-      // or handle this case appropriately
       console.error("UserId not found");
       router.push("/email");
     }
@@ -41,16 +58,19 @@ export default function Questions() {
 
   const fetchQuestions = async () => {
     try {
-      const response = await axios.get(
+      const response = await axios.get<{
+        status: boolean;
+        questions: ApiQuestion[];
+      }>(
         "https://det3xiufni.execute-api.ap-southeast-2.amazonaws.com/dev/api/v1/getQuestions"
       );
       if (response.data.status && response.data.questions) {
         const formattedQuestions: Question[] = response.data.questions.map(
-          (q: any) => ({
+          (q) => ({
             questionId: q.questionId.S,
             intelligence: {
               questionText: q.intelligence.M.questionText.S,
-              options: q.intelligence.M.options.L.map((opt: any) => ({
+              options: q.intelligence.M.options.L.map((opt) => ({
                 text: opt.M.text.S,
                 intelligenceName: opt.M.intelligenceName.S,
               })),
@@ -71,7 +91,7 @@ export default function Questions() {
   const storeAnswer = async (intelligenceName: string) => {
     setIsLoading(true);
     try {
-      const response = await axios.post(
+      const response = await axios.post<{ data: string }>(
         `https://det3xiufni.execute-api.ap-southeast-2.amazonaws.com/dev/api/v1/storeAnswer/${userId}`,
         { intelligenceName },
         {
@@ -81,13 +101,11 @@ export default function Questions() {
         }
       );
       console.log("Answer stored:", response.data);
-      // Store the examId in localStorage
       if (response.data.data) {
         localStorage.setItem("examId", response.data.data);
       }
     } catch (error) {
       console.error("Error storing answer:", error);
-      // Handle error appropriately
     } finally {
       setIsLoading(false);
     }
@@ -100,7 +118,6 @@ export default function Questions() {
         setCurrentQuestion(currentQuestion + 1);
         setSelectedOption(null);
       } else {
-        // alert("You have completed all questions!");
         router.push("/result");
       }
     } else {
@@ -115,7 +132,6 @@ export default function Questions() {
       </div>
     );
   }
-
   return (
     <div
       className="w-full min-h-screen bg-center bg-no-repeat bg-cover relative"

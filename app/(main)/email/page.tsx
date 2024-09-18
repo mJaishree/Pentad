@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import Loading from "../../loading";
 
 export default function Email() {
@@ -28,38 +28,39 @@ export default function Email() {
         }
       );
 
-      console.log("API Response:", response.data); // Log the full response
+      console.log("API Response:", response.data);
 
       if (response.data.status) {
-        // Success, navigate to the next page
         localStorage.setItem("userId", response.data.user);
         router.push("/questions");
       } else {
-        // API returned an error
         setError(
           response.data.message || "An error occurred. Please try again."
         );
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error("Error submitting form:", error);
 
-      if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
-        console.error("Error response:", error.response.data);
-        console.error("Error status:", error.response.status);
-        console.error("Error headers:", error.response.headers);
-        setError(
-          `Error: ${error.response.data.message || error.response.statusText}`
-        );
-      } else if (error.request) {
-        // The request was made but no response was received
-        console.error("Error request:", error.request);
-        setError("No response received from the server. Please try again.");
+      if (axios.isAxiosError(error)) {
+        const axiosError = error as AxiosError<{ message?: string }>;
+        if (axiosError.response) {
+          console.error("Error response:", axiosError.response.data);
+          console.error("Error status:", axiosError.response.status);
+          console.error("Error headers:", axiosError.response.headers);
+          setError(
+            `Error: ${
+              axiosError.response.data.message || axiosError.response.statusText
+            }`
+          );
+        } else if (axiosError.request) {
+          console.error("Error request:", axiosError.request);
+          setError("No response received from the server. Please try again.");
+        } else {
+          console.error("Error message:", axiosError.message);
+          setError(`An error occurred: ${axiosError.message}`);
+        }
       } else {
-        // Something happened in setting up the request that triggered an Error
-        console.error("Error message:", error.message);
-        setError(`An error occurred: ${error.message}`);
+        setError("An unexpected error occurred. Please try again.");
       }
     } finally {
       setIsLoading(false);
