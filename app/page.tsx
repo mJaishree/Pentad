@@ -1,101 +1,106 @@
+"use client";
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import Loading from "./loading";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const router = useRouter();
+  const [loading, setLoading] = useState(true);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  // Simulate loading effect (for example, fetching data)
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000); // adjust delay as needed
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleMitest = () => {
+    router.push("/email");
+  };
+
+  return (
+    <div
+      className="relative w-full min-h-screen bg-center bg-no-repeat bg-cover"
+      style={{
+        backgroundImage: "url('/assets/Home/bgimg.jpg')",
+      }}
+    >
+      {/* Loading overlay */}
+      {loading && (
+        <div className="absolute inset-0 flex justify-center items-center bg-white bg-opacity-75 z-50">
+          <Loading />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+      )}
+
+      {/* Logo and pin */}
+      <div className="flex flex-col md:flex-row justify-between items-center p-4 md:p-10">
+        <div className="flex-1 flex justify-center md:justify-start mb-10 md:mb-0">
           <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+            src="/assets/Home/logo.png"
+            width={300}
+            height={300}
+            alt="logo"
+            className="w-48 md:w-72"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        </div>
+        <div className="hidden md:block">
           <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+            src="/assets/Home/pin.png"
+            width={200}
+            height={200}
+            alt="pin"
+            className="w-36 md:w-52"
           />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+        </div>
+      </div>
+
+      {/* Boxes */}
+      <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start lg:space-x-20 space-y-10 lg:space-y-0 px-4 md:px-20">
+        <div className="flex-col w-full lg:w-auto">
+          <div className="relative">
+            {/* Main image */}
+            <Image
+              src="/assets/Home/Event.png"
+              width={900}
+              height={500}
+              alt="Event"
+              className="w-full lg:w-[700px] xl:w-[900px] h-auto"
+            />
+          </div>
+        </div>
+
+        {/* Video */}
+        <div className="w-full lg:w-1/4 h-full">
+          <video className="w-full rounded-lg shadow-lg" autoPlay muted loop>
+            <source
+              src="https://pentadacademy.s3.ap-southeast-2.amazonaws.com/MI+intro.mp4"
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+
+      {/* Pencil image */}
+      <div className="absolute bottom-0 left-0 transform -rotate-90 hidden md:block">
+        <Image
+          src="/assets/Home/pencil.png"
+          width={400}
+          height={100}
+          alt="pencil"
+          className="w-32 md:w-48 lg:w-64"
+        />
+      </div>
+
+      {/* Next button */}
+      <div className="flex justify-end p-4 md:p-10">
+        <button
+          onClick={handleMitest}
+          className="bg-[#002242] text-white px-6 py-3 rounded hover:bg-[#002242]/80 text-sm md:text-base"
         >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          Take MI Test
+        </button>
+      </div>
     </div>
   );
 }
