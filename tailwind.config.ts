@@ -13,8 +13,14 @@ const config: Config = {
         foreground: "var(--foreground)",
       },
       screens: {
-        "3xl": "1920px", // This is still much smaller than 6048px
-        ultra: "6048px", // This matches your specified width
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1280px",
+        "2xl": "1536px",
+        "3xl": "1920px", // Full HD (1080p) - Good for most 32-inch TVs
+        "4k": "3840px", // 4K UHD - For high-end 32-inch TVs
+        ultra: "6048px", // Your existing ultra-wide setting
       },
     },
   },

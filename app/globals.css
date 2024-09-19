@@ -80,3 +80,34 @@ body {
     transform: rotateY(-180deg);
   }
 }
+
+/* -------- Color Changing -------- */
+@keyframes bounce-custom {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px); /* Increased from -10px to -20px */
+  }
+}
+
+.animate-bounce-custom {
+  animation: bounce-custom 1s ease-in-out infinite; /* Smoother animation */
+}
+
+@keyframes color-change {
+  0% {
+    color: #ff898e;
+  }
+  33% {
+    color: #fbbb3f;
+  }
+  66% {
+    color: #9eee8a;
+  }
+}
+
+.animate-color-change {
+  animation: color-change 3s infinite;
+}

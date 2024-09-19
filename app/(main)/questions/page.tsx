@@ -150,9 +150,9 @@ export default function Questions() {
           width={1200}
           height={300}
           alt="ribbon"
-          className="ultra:w-[3200px]"
+          className="ultra:w-[3200px] 4k:w-[3000px]"
         />
-        <div className="absolute top-1/2 transform -translate-y-1/2 text-center md:text-4xl xl:text-4xl lg:text-4xl font-bold text-white text-md ultra:text-8xl">
+        <div className="absolute top-1/2 transform -translate-y-1/2 text-center md:text-4xl xl:text-4xl lg:text-4xl font-bold text-white text-md ultra:text-8xl 4k:text-6xl">
           {questions[currentQuestion].intelligence.questionText}
         </div>
       </div>
@@ -172,9 +172,9 @@ export default function Questions() {
                 width={500}
                 height={300}
                 alt="note"
-                className="ultra:w-[1500px]"
+                className="ultra:w-[1500px] 4k:w-[1200px]"
               />
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center md:text-3xl xl:text-3xl lg:text-3xl font-semibold text-black text-xs ultra:text-6xl">
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center md:text-3xl xl:text-3xl lg:text-3xl font-semibold text-black text-xs ultra:text-6xl 4k:text-6xl">
                 {option.text}
               </div>
             </div>
@@ -186,7 +186,7 @@ export default function Questions() {
         <button
           onClick={handleNext}
           disabled={isLoading}
-          className={`bg-[#002242] text-white px-6 py-3 rounded hover:bg-[#002242]/80 ultra:text-5xl ultra:px-16 ultra:py-10 ultra:mt-6 ${
+          className={`bg-[#002242] text-white px-6 py-3 rounded hover:bg-[#002242]/80 ultra:text-5xl ultra:px-16 ultra:py-10 ultra:mt-6 4k:text-3xl 4k:px-14 4k:py-8 ${
             isLoading ? "opacity-50 cursor-not-allowed" : ""
           }`}
         >

@@ -47,15 +47,6 @@ export default function Result() {
     fetchResults();
   }, []);
 
-  const countIntelligences = (names: string[]) => {
-    return names.reduce((acc, name) => {
-      acc[name] = (acc[name] || 0) + 1;
-      return acc;
-    }, {} as Record<string, number>);
-  };
-
-  const intelligenceCounts = countIntelligences(intelligenceNames);
-
   return (
     <div
       className="w-full min-h-screen bg-center bg-no-repeat bg-cover flex justify-center items-center relative"
@@ -67,8 +58,9 @@ export default function Result() {
           width={1000}
           height={500}
           alt="Whitebox"
-          className="ultra:w-[3000px]"
+          className="ultra:w-[3000px] 4k:w-[2200px] lg:w-[600px] "
         />
+
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center w-3/4">
           {loading ? (
             <p className="text-[#ff8c8c] text-xl">Loading your results...</p>
@@ -76,30 +68,25 @@ export default function Result() {
             <p className="text-red-500 text-xl">{error}</p>
           ) : (
             <>
-              <ul className="text-[#ff8c8c] text-3xl mt-12 ultra:text-6xl">
+              <ul className="text-[#ff8c8c] text-3xl mt-12 ultra:text-6xl 4k:text-6xl">
                 {intelligenceNames.map((name, index) => (
                   <span key={index} className="mb-2 ultra:mt-14">
-                    {name} {""}
-                    {""}
+                    {name}
+                    {index !== intelligenceNames.length - 1 && ","}{" "}
                   </span>
                 ))}
               </ul>
-              <button
-                onClick={() => router.push("/")}
-                className="mt-4 bg-[#002242] text-white px-4 py-2 rounded ultra:px-16 ultra:py-10 ultra:text-5xl ultra:mt-6"
-              >
-                Back to Home
-              </button>
             </>
           )}
         </div>
+
         <div className="absolute top-0 right-0 transform translate-x-1/4 -translate-y-1/4 z-[1]">
           <Image
             src="/assets/Result/Stickynotes.png"
             width={250}
             height={150}
             alt="stickybox"
-            className="ultra:w-[600px]"
+            className="ultra:w-[600px] 4k:w-[400px] lg:w-[200px]"
           />
         </div>
       </div>
@@ -109,16 +96,24 @@ export default function Result() {
           width={400}
           height={100}
           alt="pencil"
-          className="ultra:w-[1000px]"
+          className="ultra:w-[1000px] 4k:w-[800px] lg:w-[180px]"
         />
       </div>
-      <div className="absolute bottom-0 right-0 transform -rotate-90">
+
+      {/* New positioning for the "Back to Home" button and pin logo */}
+      <div className="absolute bottom-4 right-4 flex flex-col items-end">
+        <button
+          onClick={() => router.push("/")}
+          className="bg-[#002242] text-white px-4 py-2 rounded mb-4 ultra:px-16 ultra:py-10 ultra:text-5xl m-10 4k:text-3xl 4k:px-14 4k:py-8"
+        >
+          Back to Home
+        </button>
         <Image
           src="/assets/Home/pin.png"
           width={200}
           height={200}
           alt="pin"
-          className="ultra:w-[800px]"
+          className="ultra:w-[800px] 4k:w-[600px] lg:w-[180px]"
         />
       </div>
     </div>

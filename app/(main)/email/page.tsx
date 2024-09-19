@@ -85,7 +85,7 @@ export default function Email() {
       <div className="flex flex-col md:flex-row justify-between items-center p-4 md:p-10">
         <div className="flex-1 flex justify-center md:justify-start mb-10 md:mb-0">
           <Image
-            src="/assets/Home/logo.png"
+            src="/assets/Home/logo.svg"
             width={300}
             height={300}
             alt="logo"
@@ -126,15 +126,15 @@ export default function Email() {
                   placeholder="Enter your Name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full  p-4 text-lg rounded-md border-2 border-gray-300 focus:outline-none focus:border-[#002242] shadow-sm ultra:w-[2000px] ultra:text-5xl ultra:mb-12 ultra:border-6"
+                  className="w-full text-black p-4 text-lg rounded-md border-2 border-gray-300 focus:outline-none focus:border-[#002242] shadow-sm ultra:w-[2000px] ultra:text-5xl ultra:mb-12 ultra:border-6"
                   required
                 />
                 <input
-                  type="email"
-                  placeholder="Enter your Email"
+                  type="text"
+                  placeholder="Enter your Email / Phone Number"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full  p-4 text-lg rounded-md border-2 border-gray-300 focus:outline-none focus:border-[#002242] shadow-sm ultra:w-[2000px] ultra:text-5xl ultra:mb-12 ultra:border-6"
+                  className="w-full text-black p-4 text-lg rounded-md border-2 border-gray-300 focus:outline-none focus:border-[#002242] shadow-sm ultra:w-[2000px] ultra:text-5xl ultra:mb-12 ultra:border-6"
                   required
                 />
                 {error && <p className="text-red-500 text-sm">{error}</p>}
