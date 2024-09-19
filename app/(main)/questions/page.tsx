@@ -172,9 +172,9 @@ export default function Questions() {
                 width={500}
                 height={300}
                 alt="note"
-                className="ultra:w-[1500px] 4k:w-[1200px]"
+                className="ultra:w-[1500px] 4k:w-[1200px] lg:w-[300px]"
               />
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center md:text-3xl xl:text-3xl lg:text-3xl font-semibold text-black text-xs ultra:text-6xl 4k:text-6xl">
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center md:text-3xl xl:text-3xl lg:text-2xl font-semibold text-black text-xs ultra:text-6xl 4k:text-6xl">
                 {option.text}
               </div>
             </div>

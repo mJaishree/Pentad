@@ -89,7 +89,7 @@ export default function Email() {
             width={300}
             height={300}
             alt="logo"
-            className="w-48 md:w-72 ultra:w-[800px]"
+            className="w-48 md:w-72 ultra:w-[800px] 4k:w-[600px] lg:w-[220px]"
           />
         </div>
         <div>
@@ -98,7 +98,7 @@ export default function Email() {
             width={200}
             height={200}
             alt="pin"
-            className="w-36 md:w-52 ultra:w-[800px]"
+            className="w-36 md:w-52 ultra:w-[800px] 4k:w-[500px] lg:w-[200px]"
           />
         </div>
       </div>
@@ -113,7 +113,7 @@ export default function Email() {
               width={900}
               height={500}
               alt="Whitebox"
-              className="w-full lg:w-[700px] xl:w-[900px] h-auto ultra:w-[3000px]"
+              className="w-full lg:w-[600px] xl:w-[700px] h-auto ultra:w-[3000px] 4k:w-[2000px] "
             />
             {/* Form inside the image */}
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-10">
@@ -160,7 +160,7 @@ export default function Email() {
           width={400}
           height={100}
           alt="pencil"
-          className="w-32 md:w-48 lg:w-64 ultra:w-[1000px]"
+          className="w-32 md:w-48 lg:w-54 ultra:w-[1000px] 4k:w-[600px] xl:w-[180px]"
         />
       </div>
     </div>

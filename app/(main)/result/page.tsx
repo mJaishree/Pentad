@@ -68,7 +68,7 @@ export default function Result() {
             <p className="text-red-500 text-xl">{error}</p>
           ) : (
             <>
-              <ul className="text-[#ff8c8c] text-3xl mt-12 ultra:text-6xl 4k:text-6xl">
+              <ul className="text-[#ff8c8c] text-3xl mt-12 ultra:text-6xl 4k:text-6xl lg:text-2xl">
                 {intelligenceNames.map((name, index) => (
                   <span key={index} className="mb-2 ultra:mt-14">
                     {name}
