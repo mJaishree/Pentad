@@ -13,6 +13,7 @@ export default function Email() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [emailVisible, setEmailVisible] = useState(false); // State to control visibility
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -68,6 +69,7 @@ export default function Email() {
       setIsLoading(false);
     }
   };
+
   return (
     <div
       className="w-full min-h-screen bg-center bg-no-repeat bg-cover relative"
@@ -81,6 +83,7 @@ export default function Email() {
           <Loading />
         </div>
       )}
+
       {/* Logo and pin */}
       <div className="flex flex-col md:flex-row justify-between items-center p-4 md:p-10">
         <div className="flex-1 flex justify-center md:justify-start mb-10 md:mb-0">
@@ -121,6 +124,9 @@ export default function Email() {
                 onSubmit={handleSubmit}
                 className="flex flex-col items-center space-y-6"
               >
+                
+               
+                <div className="relative w-[90%] p-y-4 space-y-8">
                 <input
                   type="text"
                   placeholder="Enter your Name"
@@ -129,14 +135,22 @@ export default function Email() {
                   className="w-full text-black p-4 text-lg rounded-md border-2 border-gray-300 focus:outline-none focus:border-[#002242] shadow-sm ultra:w-[2000px] ultra:text-5xl ultra:mb-12 ultra:border-6"
                   required
                 />
-                <input
-                  type="text"
-                  placeholder="Enter your Email / Phone Number"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full text-black p-4 text-lg rounded-md border-2 border-gray-300 focus:outline-none focus:border-[#002242] shadow-sm ultra:w-[2000px] ultra:text-5xl ultra:mb-12 ultra:border-6"
-                  required
-                />
+                  <input
+                    type={emailVisible ? "text" : "password"} // Toggle between text and password
+                    placeholder="Enter your Email / Phone Number"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full text-black p-4 text-lg rounded-md border-2 border-gray-300 focus:outline-none focus:border-[#002242] shadow-sm ultra:w-[2000px] ultra:text-5xl ultra:mb-12 ultra:border-6"
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setEmailVisible(!emailVisible)} // Toggle visibility
+                    className="absolute top-1/2 right-4 transform -translate-y-1/8 text-lg text-gray-500"
+                  >
+                    {emailVisible ? "Hide" : "Show"}
+                  </button>
+                </div>
                 {error && <p className="text-red-500 text-sm">{error}</p>}
                 <button
                   type="submit"

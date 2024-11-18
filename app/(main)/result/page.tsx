@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Link from "next/link"; // Import the Link component
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -53,14 +54,15 @@ export default function Result() {
       style={{ backgroundImage: "url('/assets/Home/bgimg.jpg')" }}
     >
       <div className="relative flex justify-center items-center z-10">
+      <Link href="https://pentadlanding.vercel.app/">
         <Image
           src="/assets/Result/QR.png"
           width={1000}
           height={500}
           alt="Whitebox"
           className="ultra:w-[3000px] 4k:w-[2200px] lg:w-[600px] "
-        />
-
+        />      
+</Link>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center w-3/4">
           {loading ? (
             <p className="text-[#ff8c8c] text-xl">Loading your results...</p>
