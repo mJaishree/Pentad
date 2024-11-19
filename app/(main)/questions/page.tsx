@@ -138,7 +138,7 @@ export default function QuestionsWithVideo() {
       style={{ backgroundImage: "url('/assets/Home/bgimg.jpg')" }}
     >
       <main className="flex-grow flex flex-col lg:flex-row justify-center items-center gap-8 p-4 md:p-10">
-        <Card className="w-full lg:w-1/2 bg-white/90 shadow-xl">
+        <Card className="w-full lg:w-1/2 4k:w-3/4 bg-white/90 shadow-xl">
           <CardContent className="p-6">
             <div className="relative mb-8">
               <Image
@@ -189,20 +189,7 @@ export default function QuestionsWithVideo() {
             </div>
           </CardContent>
         </Card>
-        <div className="w-full lg:w-1/2 aspect-video rounded-lg overflow-hidden shadow-xl">
-          <video
-            className="w-full h-full object-cover"
-            autoPlay
-            muted
-            preload="metadata"
-          >
-            <source
-              src="https://pentadacademy.s3.ap-southeast-2.amazonaws.com/Expovideo.mp4"
-              type="video/mp4"
-            />
-            Your browser does not support the video tag.
-          </video>
-        </div>
+       
       </main>
     </div>
   );
