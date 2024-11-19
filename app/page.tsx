@@ -1,21 +1,21 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
-import { FaHandPointDown } from "react-icons/fa"
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { FaHandPointDown } from "react-icons/fa";
 
 export default function Home() {
-  const router = useRouter()
-  const [loading, setLoading] = useState(true)
+  const router = useRouter();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000)
-    return () => clearTimeout(timer)
-  }, [])
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleMitest = () => {
-    router.push("/questions")
-  }
+    router.push("/questions");
+  };
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
@@ -25,7 +25,13 @@ export default function Home() {
         </div>
       )}
 
-      <video className="absolute top-0 left-0 w-full h-full object-cover" autoPlay muted loop playsInline>
+      <video
+        className="absolute top-0 left-0 w-full h-full object-cover"
+        autoPlay
+        muted
+        loop
+        playsInline
+      >
         <source
           src="https://pentadacademy.s3.ap-southeast-2.amazonaws.com/Expovideo.mp4"
           type="video/mp4"
@@ -38,11 +44,11 @@ export default function Home() {
         <button
           onClick={handleMitest}
           className="text-[#002242] bg-[#BDA16C]
-   px-6 py-3 4k:text-6xl 4k:py-8 4k:px-16 rounded hover:bg-[#002242]/80  text-base font-bold transition-colors duration-300 ease-in-out"
+   px-6 py-3 4k:text-6xl 4k:py-8 4k:px-16 rounded  text-base font-bold transition-colors duration-300 ease-in-out"
         >
           Take MI Test
         </button>
       </div>
     </div>
-  )
+  );
 }
