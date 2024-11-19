@@ -15,7 +15,7 @@ export default function Home() {
   }, []);
 
   const handleMitest = () => {
-    router.push("/email");
+    router.push("/questions");
   };
 
   return (
