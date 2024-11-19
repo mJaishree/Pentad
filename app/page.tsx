@@ -14,7 +14,7 @@ export default function Home() {
   }, [])
 
   const handleMitest = () => {
-    router.push("/questions")
+    router.push("/email")
   }
 
   return (
@@ -38,7 +38,7 @@ export default function Home() {
         <button
           onClick={handleMitest}
           className="text-[#002242] bg-[#BDA16C]
-   px-6 py-3 4k:text-6xl 4k:py-8 4k:px-16 rounded hover:bg-[#002242]/80  text-base font-bold transition-colors duration-300 ease-in-out"
+   px-6 py-3 4k:text-6xl 4k:py-8 4k:px-16 rounded   text-base font-bold transition-colors duration-300 ease-in-out"
         >
           Take MI Test
         </button>
