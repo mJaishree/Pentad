@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
-import { FaHandPointDown } from "react-icons/fa"
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { FaHandPointDown } from "react-icons/fa";
 
 export default function Home() {
-  const router = useRouter()
-  const [loading, setLoading] = useState(true)
+  const router = useRouter();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000)
-    return () => clearTimeout(timer)
-  }, [])
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleMitest = () => {
     router.push("/email")
@@ -25,7 +25,13 @@ export default function Home() {
         </div>
       )}
 
-      <video className="absolute top-0 left-0 w-full h-full object-cover" autoPlay muted loop playsInline>
+      <video
+        className="absolute top-0 left-0 w-full h-full object-cover"
+        autoPlay
+        muted
+        loop
+        playsInline
+      >
         <source
           src="https://pentadacademy.s3.ap-southeast-2.amazonaws.com/Expovideo.mp4"
           type="video/mp4"
@@ -44,5 +50,5 @@ export default function Home() {
         </button>
       </div>
     </div>
-  )
+  );
 }
