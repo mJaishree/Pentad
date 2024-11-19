@@ -1,27 +1,27 @@
 "use client";
- 
+
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
- 
+
 interface Option {
   text: string;
   intelligenceName: string;
 }
- 
+
 interface Intelligence {
   questionText: string;
   options: Option[];
 }
- 
+
 interface Question {
   questionId: string;
   intelligence: Intelligence;
 }
- 
+
 interface ApiQuestion {
   questionId: { S: string };
   intelligence: {
@@ -38,9 +38,9 @@ interface ApiQuestion {
     };
   };
 }
- 
+
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
- 
+
 export default function QuestionsWithVideo() {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -48,18 +48,15 @@ export default function QuestionsWithVideo() {
   const [userId, setUserId] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
- 
+
   useEffect(() => {
     fetchQuestions();
     const storedUserId = localStorage.getItem("userId");
     if (storedUserId) {
       setUserId(storedUserId);
-    } else {
-      console.error("UserId not found");
-      router.push("/email");
     }
   }, [router]);
- 
+
   const fetchQuestions = async () => {
     try {
       const response = await axios.get<{
@@ -85,11 +82,11 @@ export default function QuestionsWithVideo() {
       console.error("Error fetching questions:", error);
     }
   };
- 
+
   const handleOptionSelect = (option: Option) => {
     setSelectedOption(option);
   };
- 
+
   const storeAnswer = async (intelligenceName: string) => {
     setIsLoading(true);
     try {
@@ -112,7 +109,7 @@ export default function QuestionsWithVideo() {
       setIsLoading(false);
     }
   };
- 
+
   const handleNext = async () => {
     if (selectedOption) {
       await storeAnswer(selectedOption.intelligenceName);
@@ -126,7 +123,7 @@ export default function QuestionsWithVideo() {
       alert("Please select an option before proceeding.");
     }
   };
- 
+
   if (questions.length === 0) {
     return (
       <div className="flex justify-center items-center min-h-screen bg-white">
@@ -134,7 +131,7 @@ export default function QuestionsWithVideo() {
       </div>
     );
   }
- 
+
   return (
     <div
       className="min-h-screen bg-center bg-no-repeat bg-cover relative flex flex-col"
@@ -193,19 +190,20 @@ export default function QuestionsWithVideo() {
           </CardContent>
         </Card>
         <div className="w-full lg:w-1/2 aspect-video rounded-lg overflow-hidden shadow-xl">
-  <video
-    className="w-full h-full object-cover"
-    autoPlay
-    muted
-    preload="metadata"
-  >
-    <source src="https://pentadacademy.s3.ap-southeast-2.amazonaws.com/Expovideo.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
-</div>
+          <video
+            className="w-full h-full object-cover"
+            autoPlay
+            muted
+            preload="metadata"
+          >
+            <source
+              src="https://pentadacademy.s3.ap-southeast-2.amazonaws.com/Expovideo.mp4"
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </video>
+        </div>
       </main>
- 
-      
     </div>
   );
 }
